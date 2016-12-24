@@ -74,11 +74,14 @@ class RouteCollection extends Collection
      */
     private static function prepareMiddleware(IlluminateRoute $route)
     {
-        /** @var array $middleware */
+        /** @var  array  $middleware */
         $middleware = $route->middleware();
-
-        return method_exists($route, 'controllerMiddleware')
+        $middleware = is_callable([$route, 'controllerMiddleware'])
             ? array_merge($middleware, $route->controllerMiddleware())
             : $middleware;
+
+        return array_map(function ($value) {
+            return $value instanceof \Closure ? 'Closure' : $value;
+        }, $middleware);
     }
 }
