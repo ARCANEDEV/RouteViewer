@@ -1,9 +1,9 @@
 <?php namespace Arcanedev\RouteViewer\Entities;
 
+use Illuminate\Routing\Route as IlluminateRoute;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Illuminate\Routing\Route as IlluminateRoute;
 
 /**
  * Class     RouteCollection
@@ -74,8 +74,25 @@ class RouteCollection extends Collection
      */
     private static function prepareMiddleware(IlluminateRoute $route)
     {
-        return collect($route->gatherMiddleware())->map(function ($middleware) {
-            return $middleware instanceof \Closure ? 'Closure' : $middleware;
-        })->toArray();
+        return array_map(function ($value) {
+            return $value instanceof \Closure ? 'Closure' : $value;
+        }, self::gatherMiddleware($route));
+    }
+
+    /**
+     * Gather all the route middleware.
+     *
+     * @param  \Illuminate\Routing\Route  $route
+     *
+     * @return array
+     */
+    private static function gatherMiddleware(IlluminateRoute $route)
+    {
+        /** @var  array  $middleware */
+        $middleware = $route->middleware();
+
+        return is_callable([$route, 'controllerMiddleware'])
+            ? array_unique(array_merge($middleware, $route->controllerMiddleware()), SORT_REGULAR)
+            : $middleware;
     }
 }
