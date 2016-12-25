@@ -51,12 +51,6 @@ class RouteViewer implements RouteViewerContract
     {
         $this->router = $router;
         $this->config = $config;
-        $this->routes = Entities\RouteCollection::load(
-            $this->router->getRoutes()->getRoutes(),
-            $this->getExcludedUris(),
-            $this->getExcludedMethods(),
-            $this->getMethodColors()
-        );
     }
 
     /* ------------------------------------------------------------------------------------------------
@@ -70,6 +64,15 @@ class RouteViewer implements RouteViewerContract
      */
     public function all()
     {
+        if (is_null($this->routes)) {
+            $this->routes = Entities\RouteCollection::load(
+                $this->router->getRoutes()->getRoutes(),
+                $this->getExcludedUris(),
+                $this->getExcludedMethods(),
+                $this->getMethodColors()
+            );
+        }
+
         return $this->routes;
     }
 
