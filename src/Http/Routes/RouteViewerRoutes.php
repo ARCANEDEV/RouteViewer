@@ -1,7 +1,6 @@
 <?php namespace Arcanedev\RouteViewer\Http\Routes;
 
-use Arcanedev\Support\Bases\RouteRegister;
-use Illuminate\Contracts\Routing\Registrar;
+use Arcanedev\Support\Routing\RouteRegistrar;
 
 /**
  * Class     RouteViewerRoutes
@@ -9,7 +8,7 @@ use Illuminate\Contracts\Routing\Registrar;
  * @package  Arcanedev\RouteViewer\Http\Routes
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class RouteViewerRoutes extends RouteRegister
+class RouteViewerRoutes extends RouteRegistrar
 {
     /* ------------------------------------------------------------------------------------------------
      |  Main Functions
@@ -17,10 +16,8 @@ class RouteViewerRoutes extends RouteRegister
      */
     /**
      * Map routes.
-     *
-     * @param  \Illuminate\Contracts\Routing\Registrar  $router
      */
-    public function map(Registrar $router)
+    public function map()
     {
         $this->get('/', [
             'as'   => 'index', // route-viewer::index
