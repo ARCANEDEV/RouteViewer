@@ -1,5 +1,6 @@
 <?php namespace Arcanedev\RouteViewer\Facades;
 
+use Arcanedev\RouteViewer\Contracts\RouteViewer as RouteViewerContract;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -15,8 +16,5 @@ class RouteViewer extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor()
-    {
-        return \Arcanedev\RouteViewer\Contracts\RouteViewer::class;
-    }
+    protected static function getFacadeAccessor() { return RouteViewerContract::class; }
 }
