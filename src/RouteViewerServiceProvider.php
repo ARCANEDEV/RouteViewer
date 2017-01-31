@@ -57,6 +57,8 @@ class RouteViewerServiceProvider extends PackageServiceProvider
         parent::boot();
 
         $this->publishConfig();
+        $this->publishViews();
+        $this->registerProvider(Providers\RouteServiceProvider::class);
     }
 
     /**

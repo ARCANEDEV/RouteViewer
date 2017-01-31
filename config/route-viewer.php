@@ -2,10 +2,22 @@
 
 return [
     /* ------------------------------------------------------------------------------------------------
-     |  Enabled
+     |  Route settings
      | ------------------------------------------------------------------------------------------------
      */
-    'enabled' => false,
+    'route'         => [
+        'enabled'    => true,
+
+        'attributes' => [
+            'prefix'     => 'route-viewer',
+
+            'as'         => 'route-viewer::',
+
+            'namespace'  => 'Arcanedev\\RouteViewer\\Http\\Controllers',
+
+            // 'middleware' => [],
+        ],
+    ],
 
     /* ------------------------------------------------------------------------------------------------
      |  URIs
@@ -13,7 +25,8 @@ return [
      */
     'uris'     => [
         'excluded' => [
-            '_debugbar'
+            'route-viewer',
+            '_debugbar',
         ],
     ],
 
