@@ -62,7 +62,7 @@ class RouteCollection extends Collection
                 'name'  => $method,
                 'color' => Arr::get($colors, $method),
             ];
-        }, array_diff($route->getMethods(), $excluded));
+        }, array_diff($route->methods(), $excluded));
     }
 
     /**
