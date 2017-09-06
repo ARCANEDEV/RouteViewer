@@ -12,10 +12,11 @@ use Arcanedev\RouteViewer\Http\Routes;
  */
 class RouteServiceProvider extends ServiceProvider
 {
-    /* ------------------------------------------------------------------------------------------------
-    |  Getters & Setters
-    | ------------------------------------------------------------------------------------------------
-    */
+    /* -----------------------------------------------------------------
+     |  Getters & Setters
+     | -----------------------------------------------------------------
+     */
+
     /**
      * Get route attributes.
      *
@@ -40,6 +41,30 @@ class RouteServiceProvider extends ServiceProvider
         return $this->config('enabled', false);
     }
 
+    /* -----------------------------------------------------------------
+     |  Main Methods
+     | -----------------------------------------------------------------
+     */
+
+    /**
+     * Define the routes for the application.
+     *
+     * @param  \Illuminate\Contracts\Routing\Registrar  $router
+     */
+    public function map(Router $router)
+    {
+        if ($this->isEnabled()) {
+            $router->group($this->routeAttributes(), function() {
+                Routes\RouteViewerRoutes::register();
+            });
+        }
+    }
+
+    /* -----------------------------------------------------------------
+     |  Other Methods
+     | -----------------------------------------------------------------
+     */
+
     /**
      * Get config value by key
      *
@@ -54,23 +79,5 @@ class RouteServiceProvider extends ServiceProvider
         $config = $this->app['config'];
 
         return $config->get("route-viewer.route.{$key}", $default);
-    }
-
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
-     */
-    /**
-     * Define the routes for the application.
-     *
-     * @param  \Illuminate\Contracts\Routing\Registrar  $router
-     */
-    public function map(Router $router)
-    {
-        if ($this->isEnabled()) {
-            $router->group($this->routeAttributes(), function(Router $router) {
-                Routes\RouteViewerRoutes::register($router);
-            });
-        }
     }
 }

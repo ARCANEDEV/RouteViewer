@@ -2,6 +2,7 @@
 
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
+use JsonSerializable;
 
 /**
  * Class     Route
@@ -9,12 +10,13 @@ use Illuminate\Contracts\Support\Jsonable;
  * @package  Arcanedev\RouteViewer\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class Route implements Arrayable, Jsonable
+class Route implements Arrayable, Jsonable, JsonSerializable
 {
-    /* ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
      |  Properties
-     | ------------------------------------------------------------------------------------------------
+     | -----------------------------------------------------------------
      */
+
     /** @var array */
     public $methods = [];
 
@@ -36,10 +38,11 @@ class Route implements Arrayable, Jsonable
     /** @var string|null */
     public $domain;
 
-    /* ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
      |  Constructor
-     | ------------------------------------------------------------------------------------------------
+     | -----------------------------------------------------------------
      */
+
     /**
      * Route constructor.
      *
@@ -60,10 +63,11 @@ class Route implements Arrayable, Jsonable
         $this->domain     = $domain;
     }
 
-    /* ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
      |  Getters & Setters
-     | ------------------------------------------------------------------------------------------------
+     | -----------------------------------------------------------------
      */
+
     /**
      * Set the route URI.
      *
@@ -101,10 +105,11 @@ class Route implements Arrayable, Jsonable
         return $this->isClosure() ? '' : explode('@', $this->action)[1];
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Check Functions
-     | ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
+     |  Check Methods
+     | -----------------------------------------------------------------
      */
+
     /**
      * Check if the route has name.
      *
@@ -145,10 +150,11 @@ class Route implements Arrayable, Jsonable
         return $this->action === 'Closure';
     }
 
-    /* ------------------------------------------------------------------------------------------------
-     |  Other Functions
-     | ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
+     |  Other Methods
+     | -----------------------------------------------------------------
      */
+
     /**
      * Get the instance as an array.
      *
@@ -168,6 +174,16 @@ class Route implements Arrayable, Jsonable
     }
 
     /**
+     * Convert the object into something JSON serializable.
+     *
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return $this->toArray();
+    }
+
+    /**
      * Convert the object to its JSON representation.
      *
      * @param  int  $options
@@ -176,6 +192,6 @@ class Route implements Arrayable, Jsonable
      */
     public function toJson($options = 0)
     {
-        return json_encode($this->toArray(), $options);
+        return json_encode($this->jsonSerialize(), $options);
     }
 }

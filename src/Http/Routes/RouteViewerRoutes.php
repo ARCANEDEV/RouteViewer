@@ -10,18 +10,17 @@ use Arcanedev\Support\Routing\RouteRegistrar;
  */
 class RouteViewerRoutes extends RouteRegistrar
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
+     |  Main Methods
+     | -----------------------------------------------------------------
      */
+
     /**
      * Map routes.
      */
     public function map()
     {
-        $this->get('/', [
-            'as'   => 'index', // route-viewer::index
-            'uses' => 'RouteViewerController@index',
-        ]);
+        $this->get('/', 'RouteViewerController@index')
+             ->name('index'); // route-viewer::index
     }
 }
