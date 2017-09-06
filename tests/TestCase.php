@@ -10,10 +10,11 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
  */
 abstract class TestCase extends BaseTestCase
 {
-    /* ------------------------------------------------------------------------------------------------
-     |  Main Functions
-     | ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
+     |  Main Methods
+     | -----------------------------------------------------------------
      */
+
     /**
      * Get package providers.
      *
@@ -52,24 +53,22 @@ abstract class TestCase extends BaseTestCase
         $this->registerRoutes($app['router']);
     }
 
-    /* ------------------------------------------------------------------------------------------------
+    /* -----------------------------------------------------------------
      |  Other Functions
-     | ------------------------------------------------------------------------------------------------
+     | -----------------------------------------------------------------
      */
+
     private function registerRoutes(\Illuminate\Contracts\Routing\Registrar $router)
     {
-        $router->group([
-            'middleware' => 'web',
-            'namespace'  => 'Arcanedev\\RouteViewer\\Tests\\Stubs\\Controllers'
-        ], function (\Illuminate\Contracts\Routing\Registrar $router) {
-            $router->get('/', function () {
-                return 'Homepage';
-            });
+        $router->middleware('web')
+               ->namespace('Arcanedev\\RouteViewer\\Tests\\Stubs\\Controllers')
+               ->group(function () use ($router) {
+                   $router->get('/', function () {
+                       return 'Homepage';
+                   })->name('public::home');
 
-            $router->get('contact', [
-                'as'   => 'public::contact.get',
-                'uses' => 'ContactController@getForm',
-            ]);
-        });
+                   $router->get('contact', 'ContactController@getForm')
+                          ->name('public::contact.get');
+               });
     }
 }
