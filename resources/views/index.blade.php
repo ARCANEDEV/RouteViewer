@@ -1,3 +1,5 @@
+<?php /** @var  Arcanedev\RouteViewer\Entities\RouteCollection  $routes */ ?>
+
 @extends('route-viewer::_layout.master')
 
 @section('content')
@@ -15,6 +17,7 @@
             </tr>
             </thead>
             @foreach ($routes as $route)
+                <?php /** @var  Arcanedev\RouteViewer\Entities\Route  $route */ ?>
                 <tr>
                     <td>
                         @foreach ($route->methods as $method)
