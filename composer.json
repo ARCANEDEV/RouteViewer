@@ -18,8 +18,9 @@
         "arcanedev/support": "~4.2"
     },
     "require-dev": {
-        "phpunit/phpcov":  "~4.0",
-        "phpunit/phpunit": "~6.0"
+        "orchestra/testbench": "~3.5.0",
+        "phpunit/phpcov":      "~4.0",
+        "phpunit/phpunit":     "~6.0"
     },
     "autoload": {
         "psr-4": {
@@ -40,8 +41,5 @@
                 "RouteViewer": "Arcanedev\\RouteViewer\\Facades\\RouteViewer"
             }
         }
-    },
-    "scripts": {
-        "testbench": "composer require --dev \"orchestra/testbench=~3.5.0\""
     }
 }
