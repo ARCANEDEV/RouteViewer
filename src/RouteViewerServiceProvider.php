@@ -36,7 +36,7 @@ class RouteViewerServiceProvider extends PackageServiceProvider
 
         $this->registerConfig();
 
-        $this->registerRouteViewer();
+        $this->singleton(Contracts\RouteViewer::class, RouteViewer::class);
     }
 
     /**
@@ -61,18 +61,5 @@ class RouteViewerServiceProvider extends PackageServiceProvider
         return [
             Contracts\RouteViewer::class,
         ];
-    }
-
-    /* -----------------------------------------------------------------
-     |  Other Methods
-     | -----------------------------------------------------------------
-     */
-
-    /**
-     * Register the Route Viewer.
-     */
-    private function registerRouteViewer()
-    {
-        $this->singleton(Contracts\RouteViewer::class, RouteViewer::class);
     }
 }
