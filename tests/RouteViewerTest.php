@@ -21,14 +21,14 @@ class RouteViewerTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->routeViewer = $this->app->make(\Arcanedev\RouteViewer\Contracts\RouteViewer::class);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->routeViewer);
 
@@ -49,7 +49,7 @@ class RouteViewerTest extends TestCase
         ];
 
         foreach ($expectations as $expected) {
-            $this->assertInstanceOf($expected, $this->routeViewer);
+            static::assertInstanceOf($expected, $this->routeViewer);
         }
     }
 
@@ -58,8 +58,8 @@ class RouteViewerTest extends TestCase
     {
         $routes = $this->routeViewer->all();
 
-        $this->assertInstanceOf(\Arcanedev\RouteViewer\Entities\RouteCollection::class, $routes);
-        $this->assertCount(2, $routes);
+        static::assertInstanceOf(\Arcanedev\RouteViewer\Entities\RouteCollection::class, $routes);
+        static::assertCount(2, $routes);
     }
 
     /** @test */
@@ -69,7 +69,7 @@ class RouteViewerTest extends TestCase
 
         $response->isOk();
 
-        $this->assertContains(
+        static::assertStringContainsString(
             '<h1>Routes <small>| 2 routes registered</small></h1>',
             $response->content()
         );

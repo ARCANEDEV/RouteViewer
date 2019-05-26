@@ -29,21 +29,21 @@ class RouteTest extends TestCase
         ];
 
         foreach ($expectations as $expected) {
-            $this->assertInstanceOf($expected, $route);
+            static::assertInstanceOf($expected, $route);
         }
 
-        $this->assertSame($methods, $route->methods);
-        $this->assertSame('/', $route->uri);
-        $this->assertSame('Closure', $route->action);
-        $this->assertSame('public::home', $route->name);
-        $this->assertSame(['web'], $route->middleware);
-        $this->assertEmpty($route->getActionNamespace());
-        $this->assertEmpty($route->getActionMethod());
+        static::assertSame($methods, $route->methods);
+        static::assertSame('/', $route->uri);
+        static::assertSame('Closure', $route->action);
+        static::assertSame('public::home', $route->name);
+        static::assertSame(['web'], $route->middleware);
+        static::assertEmpty($route->getActionNamespace());
+        static::assertEmpty($route->getActionMethod());
 
-        $this->assertTrue($route->isClosure());
-        $this->assertTrue($route->hasName());
-        $this->assertFalse($route->hasDomain());
-        $this->assertTrue($route->hasMiddleware());
+        static::assertTrue($route->isClosure());
+        static::assertTrue($route->hasName());
+        static::assertFalse($route->hasDomain());
+        static::assertTrue($route->hasMiddleware());
     }
 
     /** @test */
@@ -53,8 +53,8 @@ class RouteTest extends TestCase
         $method    = 'index';
         $route     = new Route($this->getMethods(), '/', "{$namespace}@{$method}", 'public::home', ['web']);
 
-        $this->assertSame($namespace, $route->getActionNamespace());
-        $this->assertSame($method, $route->getActionMethod());
+        static::assertSame($namespace, $route->getActionNamespace());
+        static::assertSame($method, $route->getActionMethod());
     }
 
     /** @test */
@@ -62,13 +62,13 @@ class RouteTest extends TestCase
     {
         $route = new Route($this->getMethods(), 'blog/posts/{id}', 'Closure', 'blog::post.show', ['web']);
 
-        $this->assertCount(1, $route->params);
-        $this->assertSame(['{id}'], $route->params);
+        static::assertCount(1, $route->params);
+        static::assertSame(['{id}'], $route->params);
 
         $route = new Route($this->getMethods(), 'blog/categories/{category}/{sub_category}', 'Closure', 'blog::categories.show', ['web']);
 
-        $this->assertCount(2, $route->params);
-        $this->assertSame(['{category}', '{sub_category}'], $route->params);
+        static::assertCount(2, $route->params);
+        static::assertSame(['{category}', '{sub_category}'], $route->params);
     }
 
     /** @test */
@@ -76,18 +76,18 @@ class RouteTest extends TestCase
     {
         $array = (new Route($this->getMethods(), '/', 'Closure', 'public::home', ['web']))->toArray();
 
-        $this->assertInternalType('array', $array);
+        static::assertIsArray($array);
 
         foreach (['methods', 'uri', 'params', 'action', 'name', 'middleware', 'domain'] as $key) {
-            $this->assertArrayHasKey($key, $array);
+            static::assertArrayHasKey($key, $array);
         }
 
-        $this->assertSame('/', $array['uri']);
-        $this->assertEmpty($array['params']);
-        $this->assertSame('Closure', $array['action']);
-        $this->assertSame('public::home', $array['name']);
-        $this->assertSame(['web'], $array['middleware']);
-        $this->assertNull($array['domain']);
+        static::assertSame('/', $array['uri']);
+        static::assertEmpty($array['params']);
+        static::assertSame('Closure', $array['action']);
+        static::assertSame('public::home', $array['name']);
+        static::assertSame(['web'], $array['middleware']);
+        static::assertNull($array['domain']);
     }
 
     /** @test */
@@ -95,7 +95,7 @@ class RouteTest extends TestCase
     {
         $route = new Route($this->getMethods(), '/', 'Closure', 'public::home', ['web']);
 
-        $this->assertJson($route->toJson());
+        static::assertJson($route->toJson());
     }
 
     /* -----------------------------------------------------------------
