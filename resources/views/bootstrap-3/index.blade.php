@@ -1,6 +1,6 @@
 <?php /** @var  Arcanedev\RouteViewer\Entities\RouteCollection  $routes */ ?>
 
-@extends('route-viewer::_layout.master')
+@extends('route-viewer::bootstrap-3._layout.master')
 
 @section('content')
     <div class="page-header">

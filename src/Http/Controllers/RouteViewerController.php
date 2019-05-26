@@ -50,7 +50,9 @@ class RouteViewerController extends Controller
      */
     public function index()
     {
-        return view('route-viewer::index', [
+        $theme = config('route-viewer.theme', 'bootstrap-3');
+
+        return view("route-viewer::{$theme}.index", [
             'routes' => $this->routeViewer->all(),
         ]);
     }

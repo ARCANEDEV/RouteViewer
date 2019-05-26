@@ -63,15 +63,6 @@ class RouteViewerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_all_routes_via_facade()
-    {
-        $routes = \Arcanedev\RouteViewer\Facades\RouteViewer::all();
-
-        $this->assertInstanceOf(\Arcanedev\RouteViewer\Entities\RouteCollection::class, $routes);
-        $this->assertCount(2, $routes);
-    }
-
-    /** @test */
     public function it_can_view_the_route_viewer()
     {
         $response = $this->get('route-viewer');
