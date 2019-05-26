@@ -27,7 +27,7 @@
     <![endif]-->
 </head>
 <body>
-@include('route-viewer::_layout.navigation')
+@include('route-viewer::bootstrap-3._layout.navigation')
 
 <div class="container-fluid">
     @yield('content')
