@@ -21,14 +21,14 @@ class RouteViewerTest extends TestCase
      | -----------------------------------------------------------------
      */
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->routeViewer = $this->app->make(\Arcanedev\RouteViewer\Contracts\RouteViewer::class);
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         unset($this->routeViewer);
 
@@ -69,7 +69,7 @@ class RouteViewerTest extends TestCase
 
         $response->isOk();
 
-        $this->assertContains(
+        $this->assertStringContainsString(
             '<h1>Routes <small>| 2 routes registered</small></h1>',
             $response->content()
         );
