@@ -27,10 +27,6 @@ Route Viewer is a package that allows you to view all Laravel routes eloquently.
   * Well tested with maximum code quality.
   * Laravel `5.1 | 5.2 | 5.3 | 5.4 | 5.5` are supported.
   * Made with :heart: &amp; :coffee:.
-  
-## TODOS
-
-  - [ ] Documentation.
 
 ## Contribution
 
