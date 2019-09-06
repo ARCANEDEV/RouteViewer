@@ -1,5 +1,6 @@
 <?php namespace Arcanedev\RouteViewer\Tests;
 
+use Arcanedev\RouteViewer\Tests\Stubs\Controllers\ContactController;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 /**
@@ -46,15 +47,13 @@ abstract class TestCase extends BaseTestCase
 
     private function registerRoutes(\Illuminate\Contracts\Routing\Registrar $router)
     {
-        $router->middleware('web')
-               ->namespace('Arcanedev\\RouteViewer\\Tests\\Stubs\\Controllers')
-               ->group(function () use ($router) {
-                   $router->get('/', function () {
-                       return 'Homepage';
-                   })->name('public::home');
+        $router->middleware('web')->group(function () use ($router) {
+            $router->get('/', function () {
+                return 'Homepage';
+            })->name('public::home');
 
-                   $router->get('contact', 'ContactController@getForm')
-                          ->name('public::contact.get');
-               });
+            $router->get('contact', [ContactController::class, '@getForm'])
+                   ->name('public::contact.get');
+        });
     }
 }
