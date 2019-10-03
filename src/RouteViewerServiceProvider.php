@@ -1,6 +1,6 @@
 <?php namespace Arcanedev\RouteViewer;
 
-use Arcanedev\Support\PackageServiceProvider;
+use Arcanedev\Support\Providers\PackageServiceProvider;
 
 /**
  * Class     RouteViewerServiceProvider
@@ -30,36 +30,21 @@ class RouteViewerServiceProvider extends PackageServiceProvider
     /**
      * Register the service provider.
      */
-    public function register()
+    public function register(): void
     {
         parent::register();
 
         $this->registerConfig();
 
-        $this->singleton(Contracts\RouteViewer::class, RouteViewer::class);
+        $this->registerProvider(Providers\RouteServiceProvider::class);
     }
 
     /**
      * Boot the service provider.
      */
-    public function boot()
+    public function boot(): void
     {
-        parent::boot();
-
         $this->publishConfig();
         $this->publishViews();
-        $this->registerProvider(Providers\RouteServiceProvider::class);
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [
-            Contracts\RouteViewer::class,
-        ];
     }
 }

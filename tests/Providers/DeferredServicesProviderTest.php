@@ -1,19 +1,22 @@
-<?php namespace Arcanedev\RouteViewer\Tests;
+<?php namespace Arcanedev\RouteViewer\Tests\Providers;
+
+use Arcanedev\RouteViewer\Providers\DeferredServicesProvider;
+use Arcanedev\RouteViewer\Tests\TestCase;
 
 /**
- * Class     RouteViewerServiceProviderTest
+ * Class     DeferredServicesProviderTest
  *
- * @package  Arcanedev\RouteViewer\Tests
+ * @package  Arcanedev\RouteViewer\Tests\Providers
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
-class RouteViewerServiceProviderTest extends TestCase
+class DeferredServicesProviderTest extends TestCase
 {
     /* -----------------------------------------------------------------
      |  Properties
      | -----------------------------------------------------------------
      */
 
-    /** @var  \Arcanedev\RouteViewer\RouteViewerServiceProvider */
+    /** @var  \Arcanedev\RouteViewer\Providers\DeferredServicesProvider */
     protected $provider;
 
     /* -----------------------------------------------------------------
@@ -25,7 +28,7 @@ class RouteViewerServiceProviderTest extends TestCase
     {
         parent::setUp();
 
-        $this->provider = $this->app->getProvider(\Arcanedev\RouteViewer\RouteViewerServiceProvider::class);
+        $this->provider = $this->app->getProvider(\Arcanedev\RouteViewer\Providers\DeferredServicesProvider::class);
     }
 
     public function tearDown(): void
@@ -45,9 +48,9 @@ class RouteViewerServiceProviderTest extends TestCase
     {
         $expectations = [
             \Illuminate\Support\ServiceProvider::class,
+            \Illuminate\Contracts\Support\DeferrableProvider::class,
             \Arcanedev\Support\Providers\ServiceProvider::class,
-            \Arcanedev\Support\Providers\PackageServiceProvider::class,
-            \Arcanedev\RouteViewer\RouteViewerServiceProvider::class,
+            \Arcanedev\RouteViewer\Providers\DeferredServicesProvider::class,
         ];
 
         foreach ($expectations as $expected) {
@@ -58,7 +61,9 @@ class RouteViewerServiceProviderTest extends TestCase
     /** @test */
     public function it_can_provides()
     {
-        $expected = [];
+        $expected = [
+            \Arcanedev\RouteViewer\Contracts\RouteViewer::class,
+        ];
 
         static::assertSame($expected, $this->provider->provides());
     }
