@@ -27,6 +27,7 @@ abstract class TestCase extends BaseTestCase
     {
         return [
             \Arcanedev\RouteViewer\RouteViewerServiceProvider::class,
+            \Arcanedev\RouteViewer\Providers\DeferredServicesProvider::class,
         ];
     }
 
