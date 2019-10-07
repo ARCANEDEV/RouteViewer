@@ -35,8 +35,9 @@ return [
 
     'uris'     => [
         'excluded' => [
-            'route-viewer',
             '_debugbar',
+            '_ignition',
+            'route-viewer',
         ],
     ],
 
