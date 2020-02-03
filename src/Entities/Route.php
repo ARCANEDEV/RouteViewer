@@ -1,7 +1,10 @@
-<?php namespace Arcanedev\RouteViewer\Entities;
+<?php
 
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
+declare(strict_types=1);
+
+namespace Arcanedev\RouteViewer\Entities;
+
+use Illuminate\Contracts\Support\{Arrayable, Jsonable};
 use JsonSerializable;
 
 /**
@@ -73,9 +76,9 @@ class Route implements Arrayable, Jsonable, JsonSerializable
      *
      * @param  string  $uri
      *
-     * @return self
+     * @return $this
      */
-    private function setUri($uri)
+    private function setUri(string $uri)
     {
         $this->uri = $uri;
 
@@ -90,7 +93,7 @@ class Route implements Arrayable, Jsonable, JsonSerializable
      *
      * @return string
      */
-    public function getActionNamespace()
+    public function getActionNamespace(): string
     {
         return $this->isClosure() ? '' : explode('@', $this->action)[0];
     }
@@ -100,7 +103,7 @@ class Route implements Arrayable, Jsonable, JsonSerializable
      *
      * @return string
      */
-    public function getActionMethod()
+    public function getActionMethod(): string
     {
         return $this->isClosure() ? '' : explode('@', $this->action)[1];
     }
@@ -115,7 +118,7 @@ class Route implements Arrayable, Jsonable, JsonSerializable
      *
      * @return bool
      */
-    public function hasName()
+    public function hasName(): bool
     {
         return ! is_null($this->name);
     }
@@ -125,7 +128,7 @@ class Route implements Arrayable, Jsonable, JsonSerializable
      *
      * @return bool
      */
-    public function hasDomain()
+    public function hasDomain(): bool
     {
         return ! is_null($this->domain);
     }
@@ -135,7 +138,7 @@ class Route implements Arrayable, Jsonable, JsonSerializable
      *
      * @return bool
      */
-    public function hasMiddleware()
+    public function hasMiddleware(): bool
     {
         return ! empty($this->middleware);
     }
@@ -145,7 +148,7 @@ class Route implements Arrayable, Jsonable, JsonSerializable
      *
      * @return bool
      */
-    public function isClosure()
+    public function isClosure(): bool
     {
         return $this->action === 'Closure';
     }
@@ -160,7 +163,7 @@ class Route implements Arrayable, Jsonable, JsonSerializable
      *
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'methods'    => $this->methods,
@@ -178,7 +181,7 @@ class Route implements Arrayable, Jsonable, JsonSerializable
      *
      * @return array
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return $this->toArray();
     }
@@ -190,7 +193,7 @@ class Route implements Arrayable, Jsonable, JsonSerializable
      *
      * @return string
      */
-    public function toJson($options = 0)
+    public function toJson($options = 0): string
     {
         return json_encode($this->jsonSerialize(), $options);
     }

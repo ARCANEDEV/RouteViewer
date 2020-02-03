@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\RouteViewer\Http\Controllers;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\RouteViewer\Http\Controllers;
 
 use Arcanedev\RouteViewer\Contracts\RouteViewer;
 use Illuminate\Routing\Controller;

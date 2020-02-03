@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\RouteViewer;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\RouteViewer;
 
 use Arcanedev\Support\Providers\PackageServiceProvider;
 

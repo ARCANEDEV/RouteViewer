@@ -1,6 +1,9 @@
-<?php namespace Arcanedev\RouteViewer\Tests\Providers;
+<?php
 
-use Arcanedev\RouteViewer\Providers\DeferredServicesProvider;
+declare(strict_types=1);
+
+namespace Arcanedev\RouteViewer\Tests\Providers;
+
 use Arcanedev\RouteViewer\Tests\TestCase;
 
 /**
@@ -44,7 +47,7 @@ class DeferredServicesProviderTest extends TestCase
      */
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         $expectations = [
             \Illuminate\Support\ServiceProvider::class,
@@ -59,7 +62,7 @@ class DeferredServicesProviderTest extends TestCase
     }
 
     /** @test */
-    public function it_can_provides()
+    public function it_can_provides(): void
     {
         $expected = [
             \Arcanedev\RouteViewer\Contracts\RouteViewer::class,

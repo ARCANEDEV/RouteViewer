@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\RouteViewer\Tests;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\RouteViewer\Tests;
 
 /**
  * Class     RouteViewerTest
@@ -41,7 +45,7 @@ class RouteViewerTest extends TestCase
      */
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         $expectations = [
             \Arcanedev\RouteViewer\Contracts\RouteViewer::class,
@@ -54,7 +58,7 @@ class RouteViewerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_all_routes()
+    public function it_can_get_all_routes(): void
     {
         $routes = $this->routeViewer->all();
 
@@ -63,7 +67,7 @@ class RouteViewerTest extends TestCase
     }
 
     /** @test */
-    public function it_can_view_the_route_viewer()
+    public function it_can_view_the_route_viewer(): void
     {
         $response = $this->get('route-viewer');
 
