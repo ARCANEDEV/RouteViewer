@@ -52,12 +52,13 @@ return [
         ],
 
         'colors' => [
-            'GET'    => 'success',
-            'HEAD'   => 'default',
-            'POST'   => 'primary',
-            'PUT'    => 'warning',
-            'PATCH'  => 'info',
-            'DELETE' => 'danger',
+            'GET'     => 'success',
+            'HEAD'    => 'secondary',
+            'OPTIONS' => 'secondary',
+            'POST'    => 'primary',
+            'PUT'     => 'warning',
+            'PATCH'   => 'info',
+            'DELETE'  => 'danger',
         ],
     ],
 

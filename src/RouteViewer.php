@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\RouteViewer;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\RouteViewer;
 
 use Arcanedev\RouteViewer\Contracts\RouteViewer as RouteViewerContract;
 use Illuminate\Contracts\Config\Repository as Config;
@@ -84,7 +88,7 @@ class RouteViewer implements RouteViewerContract
      *
      * @return array
      */
-    public function getExcludedUris()
+    public function getExcludedUris(): array
     {
         return $this->getConfig('uris.excluded', []);
     }
@@ -94,7 +98,7 @@ class RouteViewer implements RouteViewerContract
      *
      * @return array
      */
-    public function getExcludedMethods()
+    public function getExcludedMethods(): array
     {
         return $this->getConfig('methods.excluded', ['HEAD']);
     }
@@ -104,7 +108,7 @@ class RouteViewer implements RouteViewerContract
      *
      * @return array
      */
-    private function getMethodColors()
+    private function getMethodColors(): array
     {
         return $this->getConfig('methods.colors', [
             'GET'    => 'success',
@@ -129,7 +133,7 @@ class RouteViewer implements RouteViewerContract
      *
      * @return mixed
      */
-    private function getConfig($key, $default = null)
+    private function getConfig(string $key, $default = null)
     {
         return $this->config->get("route-viewer.{$key}", $default);
     }

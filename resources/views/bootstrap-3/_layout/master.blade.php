@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RouteViewer - Created by ARCANEDEV</title>
-    <meta name="description" content="Route Viewer package for Laravel">
+    <title>RouteViewer - @lang('Created by ARCANEDEV')</title>
+    <meta name="description" content="Routes Viewer package for Laravel">
     <meta name="author" content="ARCANEDEV">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style>
         body {
-            min-height: 2000px;
+            min-height: 100vh;
         }
 
         .navbar-static-top {

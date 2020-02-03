@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\RouteViewer\Providers;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\RouteViewer\Providers;
 
 use Arcanedev\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Contracts\Routing\Registrar as Router;
@@ -22,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function routeAttributes()
+    public function routeAttributes(): array
     {
         return $this->config('attributes', [
             'prefix'     => 'route-viewer',
@@ -36,7 +40,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return bool
      */
-    public function isEnabled()
+    public function isEnabled(): bool
     {
         return $this->config('enabled', false);
     }
@@ -73,7 +77,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return mixed
      */
-    private function config($key, $default = null)
+    private function config(string $key, $default = null)
     {
         /** @var  \Illuminate\Config\Repository  $config */
         $config = $this->app['config'];

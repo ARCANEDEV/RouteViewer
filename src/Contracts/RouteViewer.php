@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\RouteViewer\Contracts;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\RouteViewer\Contracts;
 
 /**
  * Interface  RouteViewer

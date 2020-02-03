@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\RouteViewer\Tests\Entities;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\RouteViewer\Tests\Entities;
 
 use Arcanedev\RouteViewer\Entities\Route;
 use Arcanedev\RouteViewer\Tests\TestCase;
@@ -17,7 +21,7 @@ class RouteTest extends TestCase
      */
 
     /** @test */
-    public function it_can_be_instantiated()
+    public function it_can_be_instantiated(): void
     {
         $methods = $this->getMethods();
         $route   = new Route($methods, '/', 'Closure', 'public::home', ['web']);
@@ -47,7 +51,7 @@ class RouteTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_action_namespace_and_method()
+    public function it_can_get_action_namespace_and_method(): void
     {
         $namespace = 'App\\Http\\Controllers\\PagesController';
         $method    = 'index';
@@ -58,7 +62,7 @@ class RouteTest extends TestCase
     }
 
     /** @test */
-    public function it_can_get_params_from_uri()
+    public function it_can_get_params_from_uri(): void
     {
         $route = new Route($this->getMethods(), 'blog/posts/{id}', 'Closure', 'blog::post.show', ['web']);
 
@@ -72,7 +76,7 @@ class RouteTest extends TestCase
     }
 
     /** @test */
-    public function it_can_convert_to_array()
+    public function it_can_convert_to_array(): void
     {
         $array = (new Route($this->getMethods(), '/', 'Closure', 'public::home', ['web']))->toArray();
 
@@ -91,7 +95,7 @@ class RouteTest extends TestCase
     }
 
     /** @test */
-    public function it_can_convert_to_json()
+    public function it_can_convert_to_json(): void
     {
         $route = new Route($this->getMethods(), '/', 'Closure', 'public::home', ['web']);
 
@@ -108,13 +112,13 @@ class RouteTest extends TestCase
      *
      * @return array
      */
-    private function getMethods()
+    private function getMethods(): array
     {
         return [
             [
                 'name'  => 'GET',
                 'color' => 'success',
-            ]
+            ],
         ];
     }
 }

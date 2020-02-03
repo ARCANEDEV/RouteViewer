@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\RouteViewer\Tests\Stubs\Controllers;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\RouteViewer\Tests\Stubs\Controllers;
 
 use Illuminate\Routing\Controller;
 

@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\RouteViewer\Http\Routes;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\RouteViewer\Http\Routes;
 
 use Arcanedev\Support\Routing\RouteRegistrar;
 

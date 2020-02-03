@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\RouteViewer\Providers;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\RouteViewer\Providers;
 
 use Arcanedev\RouteViewer\{Contracts, RouteViewer};
 use Arcanedev\Support\Providers\ServiceProvider;

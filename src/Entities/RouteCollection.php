@@ -1,4 +1,8 @@
-<?php namespace Arcanedev\RouteViewer\Entities;
+<?php
+
+declare(strict_types=1);
+
+namespace Arcanedev\RouteViewer\Entities;
 
 use Illuminate\Routing\Route as IlluminateRoute;
 use Illuminate\Support\Arr;
@@ -26,7 +30,7 @@ class RouteCollection extends Collection
      * @param  array  $excludedMethods
      * @param  array  $methodColors
      *
-     * @return self
+     * @return $this
      */
     public static function load(
         array $routes, array $excludedUris = [], array $excludedMethods = [], array $methodColors = []
@@ -78,7 +82,7 @@ class RouteCollection extends Collection
      *
      * @return array
      */
-    private static function prepareMiddleware(IlluminateRoute $route)
+    private static function prepareMiddleware(IlluminateRoute $route): array
     {
         return array_map(function ($value) {
             return $value instanceof \Closure ? 'Closure' : $value;
@@ -92,7 +96,7 @@ class RouteCollection extends Collection
      *
      * @return array
      */
-    private static function gatherMiddleware(IlluminateRoute $route)
+    private static function gatherMiddleware(IlluminateRoute $route): array
     {
         /** @var  array  $middleware */
         $middleware = $route->middleware();
