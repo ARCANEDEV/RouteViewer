@@ -54,7 +54,7 @@ If you discover any security related issues, please email arcanedev.maroc@gmail.
 
 [link-author]:        https://github.com/arcanedev-maroc
 [link-github-repo]:   https://github.com/ARCANEDEV/RouteViewer
-[link-github-status]: https://github.com/ARCANEDEV/SEO-Helper/actions
+[link-github-status]: https://github.com/ARCANEDEV/RouteViewer/actions
 [link-github-issues]: https://github.com/ARCANEDEV/RouteViewer/issues
 [link-contributors]:  https://github.com/ARCANEDEV/RouteViewer/graphs/contributors
 [link-packagist]:     https://packagist.org/packages/arcanedev/route-viewer
