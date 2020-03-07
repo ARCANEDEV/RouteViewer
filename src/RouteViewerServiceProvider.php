@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Arcanedev\RouteViewer;
 
+use Arcanedev\RouteViewer\Providers\RouteServiceProvider;
 use Arcanedev\Support\Providers\PackageServiceProvider;
 
 /**
@@ -40,7 +41,7 @@ class RouteViewerServiceProvider extends PackageServiceProvider
 
         $this->registerConfig();
 
-        $this->registerProvider(Providers\RouteServiceProvider::class);
+        $this->registerProvider(RouteServiceProvider::class);
     }
 
     /**
@@ -48,7 +49,13 @@ class RouteViewerServiceProvider extends PackageServiceProvider
      */
     public function boot(): void
     {
-        $this->publishConfig();
-        $this->publishViews();
+        $this->loadTranslations();
+        $this->loadViews();
+
+        if ($this->app->runningInConsole()) {
+            $this->publishConfig();
+            $this->publishTranslations();
+            $this->publishViews();
+        }
     }
 }
