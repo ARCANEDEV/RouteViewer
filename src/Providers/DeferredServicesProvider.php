@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\RouteViewer\Providers;
 
-use Arcanedev\RouteViewer\{Contracts, RouteViewer};
+use Arcanedev\RouteViewer\Contracts\RouteViewer as RouteViewerContract;
+use Arcanedev\RouteViewer\RouteViewer;
 use Arcanedev\Support\Providers\ServiceProvider;
 use Illuminate\Contracts\Support\DeferrableProvider;
 
@@ -28,7 +29,7 @@ class DeferredServicesProvider extends ServiceProvider implements DeferrableProv
     {
         parent::register();
 
-        $this->singleton(Contracts\RouteViewer::class, RouteViewer::class);
+        $this->singleton(RouteViewerContract::class, RouteViewer::class);
     }
 
     /**
@@ -39,7 +40,7 @@ class DeferredServicesProvider extends ServiceProvider implements DeferrableProv
     public function provides(): array
     {
         return [
-            Contracts\RouteViewer::class,
+            RouteViewerContract::class,
         ];
     }
 }
