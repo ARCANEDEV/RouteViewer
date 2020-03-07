@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Arcanedev\RouteViewer\Providers;
 
+use Arcanedev\RouteViewer\Http\Routes\RouteViewerRoutes;
 use Arcanedev\Support\Providers\RouteServiceProvider as ServiceProvider;
-use Illuminate\Contracts\Routing\Registrar as Router;
-use Arcanedev\RouteViewer\Http\Routes;
 
 /**
  * Class     RouteServiceProvider
@@ -17,23 +16,26 @@ use Arcanedev\RouteViewer\Http\Routes;
 class RouteServiceProvider extends ServiceProvider
 {
     /* -----------------------------------------------------------------
-     |  Getters & Setters
+     |  Main Methods
      | -----------------------------------------------------------------
      */
 
     /**
-     * Get route attributes.
-     *
-     * @return array
+     * Map the routes.
      */
-    public function routeAttributes(): array
+    public function map(): void
     {
-        return $this->config('attributes', [
-            'prefix'     => 'route-viewer',
-            'as'         => 'route-viewer::',
-            'namespace'  => 'Arcanedev\\RouteViewer\\Http\\Controllers',
-        ]);
+        if ($this->isEnabled()) {
+            static::mapRouteClasses([
+                RouteViewerRoutes::class,
+            ]);
+        }
     }
+
+    /* -----------------------------------------------------------------
+     |  Check Methods
+     | -----------------------------------------------------------------
+     */
 
     /**
      * Check if routes is enabled.
@@ -42,46 +44,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function isEnabled(): bool
     {
-        return $this->config('enabled', false);
-    }
-
-    /* -----------------------------------------------------------------
-     |  Main Methods
-     | -----------------------------------------------------------------
-     */
-
-    /**
-     * Define the routes for the application.
-     *
-     * @param  \Illuminate\Contracts\Routing\Registrar  $router
-     */
-    public function map(Router $router)
-    {
-        if ($this->isEnabled()) {
-            $router->group($this->routeAttributes(), function() {
-                Routes\RouteViewerRoutes::register();
-            });
-        }
-    }
-
-    /* -----------------------------------------------------------------
-     |  Other Methods
-     | -----------------------------------------------------------------
-     */
-
-    /**
-     * Get config value by key
-     *
-     * @param  string      $key
-     * @param  mixed|null  $default
-     *
-     * @return mixed
-     */
-    private function config(string $key, $default = null)
-    {
-        /** @var  \Illuminate\Config\Repository  $config */
-        $config = $this->app['config'];
-
-        return $config->get("route-viewer.route.{$key}", $default);
+        return (bool) ($this->app['config']['route-viewer.route.enabled'] ?: false);
     }
 }

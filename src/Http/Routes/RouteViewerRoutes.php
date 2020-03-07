@@ -22,9 +22,30 @@ class RouteViewerRoutes extends RouteRegistrar
     /**
      * Map routes.
      */
-    public function map()
+    public function map(): void
     {
-        $this->get('/', 'RouteViewerController@index')
-             ->name('index'); // route-viewer::index
+        $this->group($this->getRouteAttributes(), function () {
+            $this->get('/', 'RouteViewerController@index')
+                 ->name('index'); // route-viewer::index
+        });
+    }
+
+    /* -----------------------------------------------------------------
+     |  Other Methods
+     | -----------------------------------------------------------------
+     */
+
+    /**
+     * Get the route attributes.
+     *
+     * @return array
+     */
+    private function getRouteAttributes(): array
+    {
+        return config('route-viewer.route.attributes', [
+            'prefix'     => 'route-viewer',
+            'as'         => 'route-viewer::',
+            'namespace'  => 'Arcanedev\\RouteViewer\\Http\\Controllers',
+        ]);
     }
 }
