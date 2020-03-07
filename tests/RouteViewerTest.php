@@ -74,7 +74,7 @@ class RouteViewerTest extends TestCase
         $response->isOk();
 
         static::assertStringContainsString(
-            '<h1>Routes <small>| 2 routes registered</small></h1>',
+            'Routes <small class="text-muted">(2 registered)</small>',
             $response->content()
         );
     }
