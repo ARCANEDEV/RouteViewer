@@ -10,7 +10,6 @@ use Arcanedev\RouteViewer\Tests\TestCase;
 /**
  * Class     RouteTest
  *
- * @package  Arcanedev\RouteViewer\Tests\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class RouteTest extends TestCase

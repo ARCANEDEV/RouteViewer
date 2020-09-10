@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Arcanedev\RouteViewer\Http\Routes;
 
+use Arcanedev\RouteViewer\Http\Controllers\RouteViewerController;
 use Arcanedev\Support\Routing\RouteRegistrar;
 
 /**
  * Class     RouteViewerRoutes
  *
- * @package  Arcanedev\RouteViewer\Http\Routes
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class RouteViewerRoutes extends RouteRegistrar
@@ -24,28 +24,9 @@ class RouteViewerRoutes extends RouteRegistrar
      */
     public function map(): void
     {
-        $this->group($this->getRouteAttributes(), function () {
-            $this->get('/', 'RouteViewerController@index')
+        $this->group(config('route-viewer.route.attributes'), function () {
+            $this->get('/', [RouteViewerController::class, 'index'])
                  ->name('index'); // route-viewer::index
         });
-    }
-
-    /* -----------------------------------------------------------------
-     |  Other Methods
-     | -----------------------------------------------------------------
-     */
-
-    /**
-     * Get the route attributes.
-     *
-     * @return array
-     */
-    private function getRouteAttributes(): array
-    {
-        return config('route-viewer.route.attributes', [
-            'prefix'     => 'route-viewer',
-            'as'         => 'route-viewer::',
-            'namespace'  => 'Arcanedev\\RouteViewer\\Http\\Controllers',
-        ]);
     }
 }

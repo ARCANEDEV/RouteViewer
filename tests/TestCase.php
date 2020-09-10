@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Arcanedev\RouteViewer\Tests;
 
 use Arcanedev\RouteViewer\Tests\Stubs\Controllers\ContactController;
+use Illuminate\Contracts\Routing\Registrar;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 /**
  * Class     TestCase
  *
- * @package  Arcanedev\RouteViewer\Tests
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 abstract class TestCase extends BaseTestCase
@@ -55,9 +55,9 @@ abstract class TestCase extends BaseTestCase
      *
      * @param  \Illuminate\Contracts\Routing\Registrar  $router
      */
-    private function registerRoutes(\Illuminate\Contracts\Routing\Registrar $router)
+    private function registerRoutes(Registrar $router)
     {
-        $router->middleware('web')->group(function () use ($router) {
+        $router->middleware(['web'])->group(function () use ($router) {
             $router->get('/', function () {
                 return 'Homepage';
             })->name('public::home');

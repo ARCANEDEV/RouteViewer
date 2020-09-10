@@ -9,7 +9,6 @@ use Illuminate\Routing\Controller;
 /**
  * Class     ContactController
  *
- * @package  Arcanedev\RouteViewer\Tests\Stubs\Controllers
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class ContactController extends Controller

@@ -9,7 +9,6 @@ use Arcanedev\RouteViewer\Tests\TestCase;
 /**
  * Class     DeferredServicesProviderTest
  *
- * @package  Arcanedev\RouteViewer\Tests\Providers
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class DeferredServicesProviderTest extends TestCase

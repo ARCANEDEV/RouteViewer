@@ -14,13 +14,13 @@
     "type":    "library",
     "license": "MIT",
     "require": {
-        "php":               "^7.2.5",
-        "ext-json":          "*",
-        "arcanedev/support": "^7.0"
+        "php": "^7.3",
+        "ext-json": "*",
+        "arcanedev/support": "^8.0"
     },
     "require-dev": {
-        "orchestra/testbench": "^5.0",
-        "phpunit/phpunit":     "^8.5|^9.0"
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.3"
     },
     "autoload": {
         "psr-4": {
@@ -32,13 +32,23 @@
             "Arcanedev\\RouteViewer\\Tests\\": "tests/"
         }
     },
+    "scripts": {
+        "test": "phpunit",
+        "coverage": "phpunit --coverage-html build/coverage/html"
+    },
     "extra": {
+        "branch-alias": {
+            "dev-develop": "4.x-dev"
+        },
         "laravel": {
             "providers": [
                 "Arcanedev\\RouteViewer\\RouteViewerServiceProvider",
                 "Arcanedev\\RouteViewer\\Providers\\DeferredServicesProvider"
             ]
         }
+    },
+    "config": {
+        "sort-packages": true
     },
     "minimum-stability": "dev",
     "prefer-stable": true

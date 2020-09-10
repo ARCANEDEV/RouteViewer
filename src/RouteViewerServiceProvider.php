@@ -10,7 +10,6 @@ use Arcanedev\Support\Providers\PackageServiceProvider;
 /**
  * Class     RouteViewerServiceProvider
  *
- * @package  Arcanedev\RouteViewer
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class RouteViewerServiceProvider extends PackageServiceProvider
