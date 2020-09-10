@@ -10,7 +10,6 @@ use Illuminate\Routing\Controller;
 /**
  * Class     RouteViewerController
  *
- * @package  Arcanedev\RouteViewer\Http\Controllers
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class RouteViewerController extends Controller

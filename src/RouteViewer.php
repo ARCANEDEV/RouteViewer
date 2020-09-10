@@ -11,7 +11,6 @@ use Illuminate\Contracts\Routing\Registrar as Router;
 /**
  * Class     RouteViewer
  *
- * @package  Arcanedev\RouteViewer
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class RouteViewer implements RouteViewerContract

@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace Arcanedev\RouteViewer\Entities;
 
+use Closure;
 use Illuminate\Routing\Route as IlluminateRoute;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
+use Illuminate\Support\{Arr, Collection, Str};
 
 /**
  * Class     RouteCollection
  *
- * @package  Arcanedev\RouteViewer\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class RouteCollection extends Collection
@@ -85,7 +83,7 @@ class RouteCollection extends Collection
     private static function prepareMiddleware(IlluminateRoute $route): array
     {
         return array_map(function ($value) {
-            return $value instanceof \Closure ? 'Closure' : $value;
+            return $value instanceof Closure ? 'Closure' : $value;
         }, self::gatherMiddleware($route));
     }
 

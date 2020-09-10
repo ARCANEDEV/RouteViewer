@@ -10,7 +10,6 @@ use Arcanedev\Support\Providers\RouteServiceProvider as ServiceProvider;
 /**
  * Class     RouteServiceProvider
  *
- * @package  Arcanedev\RouteViewer\Providers
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class RouteServiceProvider extends ServiceProvider
@@ -21,14 +20,14 @@ class RouteServiceProvider extends ServiceProvider
      */
 
     /**
-     * Map the routes.
+     * Boot the service provider.
      */
-    public function map(): void
+    public function boot(): void
     {
         if ($this->isEnabled()) {
-            static::mapRouteClasses([
-                RouteViewerRoutes::class,
-            ]);
+            $this->routes(function () {
+                static::mapRouteClasses([RouteViewerRoutes::class]);
+            });
         }
     }
 
@@ -44,6 +43,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function isEnabled(): bool
     {
-        return (bool) ($this->app['config']['route-viewer.route.enabled'] ?: false);
+        return (bool) ($this->app['config']['route-viewer.route.enabled'] ?? false);
     }
 }

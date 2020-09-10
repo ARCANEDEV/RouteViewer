@@ -7,7 +7,6 @@ namespace Arcanedev\RouteViewer\Tests;
 /**
  * Class     RouteViewerServiceProviderTest
  *
- * @package  Arcanedev\RouteViewer\Tests
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class RouteViewerServiceProviderTest extends TestCase

@@ -22,9 +22,7 @@ return [
 
             'as'         => 'route-viewer::',
 
-            'namespace'  => 'Arcanedev\\RouteViewer\\Http\\Controllers',
-
-            // 'middleware' => [],
+            'middleware' => [],
         ],
     ],
 

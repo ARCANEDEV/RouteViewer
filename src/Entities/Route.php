@@ -10,7 +10,6 @@ use JsonSerializable;
 /**
  * Class     Route
  *
- * @package  Arcanedev\RouteViewer\Entities
  * @author   ARCANEDEV <arcanedev.maroc@gmail.com>
  */
 class Route implements Arrayable, Jsonable, JsonSerializable
